@@ -1,4 +1,5 @@
 Code has been tested to run sample run and expected output. 
+
 PS C:\Users\...\GitHub\EECS581_A1_Lea> g++ -std=c++11 main.cpp -o main.exe
 PS C:\Users\...\GitHub\EECS581_A1_Lea> .\main.exe
 Enter a string (or 'END' to quit): connecting to 192.168.1.1 now
@@ -23,6 +24,11 @@ Enter a string (or 'END' to quit):  END
 Invalid input: no valid IPv4 address found
 Enter a string (or 'END' to quit): END
 Program terminated.
+
+Test Cases
+host: 192.168.1.05:80   Expected Outcome: Invalid input: no valid IPv4 address found      Failed because Octet 3 has length of 2 and starts with '0'
+ping 10.0.0.1:80:80 fail   Expected Outcome: Invalid input: no valid IPv4 address found    Failed because candidate contains two colon characters
+Connection from 192.168.1.1 refused   Expected Outcome: Extracted IPv4 address: 192.168.1.1 (decimal value: 3232235777, port: none)
 
 
 Breakdown of what I understand from the code:
@@ -51,6 +57,3 @@ It does so by: skipping over non-token characters, grabs the start and end indic
 
 * main()
 This block of code it the interactive user interface loop. This contains the message that is to be printed to prompt the user for an input, and run desired sample run. 
-
-
-
