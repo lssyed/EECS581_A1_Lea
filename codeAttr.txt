@@ -1,0 +1,65 @@
+=>Prompt Used to Create Code
+
+### [ACT]
+Act as a patient, clear-headed computer science instructor and expert C++ tutor who specializes in teaching beginner undergraduate engineers how to write readable, fundamental C++ without advanced abstractions or complex standard library features.
+
+### [REQUEST]
+Write a beginner-friendly, clean, and complete C++ program that reads user input lines and scans for an embedded IPv4 address (with an optional port number). 
+
+Implement the exact required function prototype:
+```cpp
+bool extractIPv4(const std::string& str, unsigned long& outAddress, int& outPort);
+
+###[TERMS & CONSTRAINTS]
+Coding Style & Skill Level (Crucial for Beginner Level):
+
+Use straightforward, approachable C++ fundamentals.
+
+Allowed tools: Basic std::string, standard indexing [] or .length(), simple loops (for, while), basic if/else statements, standard primitive types (int, unsigned long, char, bool), and <cctype> (std::isdigit).
+
+DO NOT use advanced C++ features: No iterators, no lambdas, no smart pointers, no templates, no custom classes/structs, no <algorithm> calls (like std::find_if), and no string streams (std::stringstream).
+
+Keep the logic intuitive, cleanly separated into small helper functions if needed (e.g., a simple helper to validate a single octet or parse a candidate slice), and include plain-English comments explaining why each step is taken.
+
+Strict Library Bans (Assignment Requirement):
+
+NO string conversion functions (stoi, stol, atoi, atol, strtol, sscanf, etc.).
+
+NO networking libraries (inet_pton, inet_addr, etc.).
+
+NO regular expressions (std::regex).
+
+All conversions from characters to numbers must be done manually using basic arithmetic (e.g., num = num * 10 + (ch - '0')).
+
+Grammar & Lexing Rules:
+
+Candidate Token: A sequence of characters containing only digits (0–9), dots (.), and colons (:). Any other character is treated as garbage/delimiter.
+
+No Partial Matches / No Truncation: If a candidate token has invalid structure (such as 1.2.3.4.5 or 1.2.3.4:80:80 or .1.2.3.4), the entire token must be rejected. Do not extract a "good piece" from a bad token.
+
+Octets: Exactly 4 octets separated by .. Each must be 1 to 3 digits, range 0–255, with no leading zeros (e.g., 01 is invalid; 0 is valid).
+
+Optional Port: A colon : immediately after the 4th octet, followed by 1 to 5 digits, range 0–65535, no leading zeros (e.g., :080 is invalid; :0 is valid). If the port is malformed, reject the entire address. If no colon is present, set outPort = -1.
+
+Required Behavior & Main Loop:
+
+In main(), continuously prompt the user for input using std::getline(std::cin, line) until the user inputs END (case-sensitive).
+
+When END is entered, print Program terminated. and exit.
+
+On success, format the output exactly as:
+Extracted IPv4 address: A.B.C.D (decimal value: N, port: P)
+(where N is the 32-bit integer value, and P is the port number or the text none).
+
+On failure, output: No valid IPv4 address found.
+
+On failure inside the function, set outAddress = 0 and outPort = -1.
+
+Explanations & Student Support:
+
+Include a step-by-step breakdown explaining how the manual character-to-number math works.
+
+Provide a list of 5–7 classic edge cases (like leading zeros or extra periods) to test against, explaining what to watch out for.
+
+
+=> I had to modify the code in the main because it needed to match the sample run. 
